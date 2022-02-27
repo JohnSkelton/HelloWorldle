@@ -1,0 +1,65 @@
+<!doctype html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<html lang="en">
+   
+
+<head>
+  <meta charset="utf-8">
+  <title>Hello Worldle</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<header id="showcase1">
+
+  <button class="home">
+    <a href="index.html"><img src="home.png" height="50px" width="50" /></a>
+  </button>
+<body>
+
+  <ul>
+
+    <script>
+      var easy = new URLSearchParams(location.search);
+      easy.set('difficulty', 'easy');
+      var medium = new URLSearchParams(location.search);
+      medium.set('difficulty', 'medium');
+      var hard = new URLSearchParams(location.search);
+      hard.set('difficulty', 'hard');
+var link = window.location.href.toString().split('?');
+</script>
+    <li> <a href="javascript:window.location.href=link[0]+'?'+easy" data-role="button" data-inline="true"class="button">Easy</a></li>
+    <li> <a href="javascript:window.location.href=link[0]+'?'+medium" data-role="button" data-inline="true"class="button">Medium</a></li>
+    <li> <a href="javascript:window.location.href=link[0]+'?'+hard" data-role="button" data-inline="true"class="button">Hard</a></li>
+    <div id="confetti">
+
+  </ul>
+  <div class="container">
+    <div id="helloWorld"></div>
+
+    <div id="guessMatrix"></div>
+    <div id="keyboard"></div>
+    <div id="popup"></div>
+
+     
+  </div>
+  
+    <div class="centre">
+      <ul>
+        <script>
+          const parameter = new URLSearchParams(window. location. search)
+          var difficulty = parameter.get('difficulty')
+        </script>
+        <li> <a href="javascript:window.location.href='game.html?-f-&difficulty='+difficulty" data-role="button" data-inline="true"class="button">Family/Friend</a></li>
+        <li> <a href="javascript:window.location.href='game.html?-e-&difficulty='+difficulty" data-role="button" data-inline="true"class="button">Environment</a></li>
+        <li> <a href="javascript:window.location.href='game.html?-t-&difficulty='+difficulty" data-role="button" data-inline="true"class="button">Technology</a></li>
+      </ul>
+     
+  </div>
+ 
+
+</body>
+<script src="app.js"></script>
+
+
+</html>

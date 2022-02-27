@@ -1,0 +1,87 @@
+
+<!doctype html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hello Worldle</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+</html>
+<header id="showcase">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <h1>Hello Worldle</h1>
+  <p>This game was developed to broaden your vocabulary of your chosen subject</p>
+
+  <p>Choose a genre for your worldle game!</p>
+<div class="centre">
+  <ul>
+    <script>
+      var easy = new URLSearchParams(location.search);
+      easy.set('difficulty', 'easy');
+      </script>
+    <li> <a href="javascript:window.location.href='game.html?-f-&'+easy" data-role="button" data-inline="true"class="button">Family/Friend</a></li>
+    <li> <a href="javascript:window.location.href='game.html?-e-&'+easy" data-role="button" data-inline="true"class="button">Environment</a></li>
+    <li> <a href="javascript:window.location.href='game.html?-t-&'+easy" data-role="button" data-inline="true"class="button">Technology</a></li>
+  </ul>
+
+
+
+</header>
+
+<section id="section-a">
+
+  <p>Welcome to Hello Worldle! Pick a subject that you would like the mystery word to be related to. By default the difficulty of the game will be set to easy which means the mystery word will only have 5 letters. If you decide to choose the medium difficulty word will contain between 6 and 8 letters and if you choose the hard difficulty the word will contain between 9 and 12 letters.
+
+    .</p>
+
+</section>
+
+<section id="section-b">
+
+  <p>To play the game guess a word by clicking the letter tiles with your mouse until all squares in the row has been filled with letters and then click enter if the word exists in the english api dictionary it will be accepted and the squares will change colour to give you information about whether you have guessed correctly or partially guessed correctly. If the word does not exist in the api dictionary it will show a pop up warning message and delete the entry for you to guess a new word.</p>
+
+</section>
+
+<section id="section-c">
+
+  <div class="box-1">
+
+    Once you’ve entered your  word, and hit the enter button to submit. You will then see each letter on its tile turn to either grey, orange or green.
+
+    
+
+
+
+  </div>
+
+  <div class="box-2">
+
+    If a tile turns orange, this means that its particular letter is included in the mystery word of the day and if it turns green, the letter is included in the final word and also in the right place.
+
+  </div>
+
+  <div class="box-3">
+
+    If you guess the mystery word you will be greeted with a surprise and all squared in the row will be turned green!
+
+  </div>
+
+</section>
