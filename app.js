@@ -201,7 +201,7 @@ helloWorld.innerHTML += `<div id="HelloWorld" class="Container">   <p>Hello Worl
 function getPosition(string, subString, index) {
   return string.split(subString, index).join(subString).length;
 }
-function getCurrentGuess(){
+function apend(){
   let text = "";
   currentGuess.forEach((keyGuess, index) => {
     text += keyGuess.key;
@@ -220,7 +220,7 @@ let count=0;
       count=mysteryWord.split(keyGuess.key).length - 1
       // if the letter index is less than or equal to the position of the total count of that letter in
       // the mysteryWord (final letter position that equals the amount of letters in the mysteryWord), result=found
-      if (index<=getPosition(getCurrentGuess(),keyGuess.key,count)){
+      if (index<=getPosition(apend(),keyGuess.key,count)){
       keyGuess.result = Found
       }
       else{
@@ -255,7 +255,7 @@ function updateKeyboard() {
   }
 }
 
-function updateGuess(guessed = false) {
+function updateCurrentGuess(guessed = false) {
   let index = guesses.length;
   for (let i = 0; i < mysteryWord.length; i++) {
     let guessMatrix = document.getElementById(`${index}${i}`);
