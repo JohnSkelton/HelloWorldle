@@ -1,28 +1,32 @@
+// dictionary: could have been an array but I chose a dictionary to track the state of each key
 let keys =  {
   'q': '', 'w': '', 'e': '', 'r': '', 't': '', 'y': '', 'u': '', 'i': '', 'o': '', 'p': '', 'break': '',
   'a': '', 's': '', 'd': '', 'f': '', 'g': '', 'h': '', 'j': '', 'k': '', 'l': '', 'break2': '',
   'enter': '', 'z': '', 'x': '', 'c': '', 'v': '', 'b': '', 'n': '', 'm': '', '⌫': ''
 };
 
-
+//  array for all guesses and for current guess
 let guesses = [];
 let currentGuess = [];
-let first=0;
+// Word to guess from genre dictionaries
 let mysteryWord=''
-let match=true;
+//gets the parameter from the url
 var parameters = window.location.href.split('-')[1];
 const param = new URLSearchParams(window. location. search)
+// gets the difficulty from url parameter
 var difficulty = param.get('difficulty')
 let dict="f-dict.txt"
-if (param=="f"){
+//sets the genre dictionary based on the parameter in url
+if (parameters=="f"){
   dict="f-dict.txt"
 }
-if (param=="e"){
+if (parameters=="e"){
   dict="e-dict.txt"
 }
-if (param=="t"){
+if (parameters=="t"){
   dict="t-dict.txt"
 }
+// sets the mystery word depending on difficulty 
 async function word(){
 return await fetch(dict,{
   method: 'get'
@@ -34,7 +38,7 @@ return await fetch(dict,{
 
   let array=data.replaceAll("rn", '');
   array=array.split(" ");
-
+// sets mystery word to size 9-12 if hard difficulty 
 for (var i = 0; i < array.length; i++) {
     let j=Math.floor(Math.random() * array.length);
     if (difficulty=='hard'){
@@ -45,6 +49,8 @@ for (var i = 0; i < array.length; i++) {
     return 
     }
   }
+  // sets mystery word to size 6-8 if medium difficulty 
+
     if (difficulty=='medium'){
     if ((array[j].trim().length>5)&&(array[j].trim().length<=8)){
     set(array[j].trim().toLowerCase());
@@ -53,6 +59,8 @@ for (var i = 0; i < array.length; i++) {
     return 
     }
     }
+    // sets mystery word to size 5 if easy difficulty 
+
     if (difficulty=='easy'){
     if (array[j].trim().length==5){
     set(array[j].trim().toLowerCase());
@@ -71,13 +79,15 @@ function set(word){
   mysteryWord=word;
 }
 
-
+// sets number of guesses might change this to let and edit based on difficulty in future version
 const NumberOfGuesses = 6;
+
+// for colouring tiles
 const Correct = 'correct';
 const Found = 'found';
 const Wrong = 'wrong';
 const None = 'none';
-
+// initializes the matrix and keyboard
 function initialize() {
   let guessMatrix = document.getElementById("guessMatrix");
   for (let i = 0; i < NumberOfGuesses; i++) {
@@ -95,6 +105,7 @@ function initialize() {
     }
   });
 }
+// wait function by ms can be used to set a timer on html elements such as pop up messages currently not used
 function wait(ms)
 {
     var d = new Date();
@@ -102,11 +113,9 @@ function wait(ms)
     do { d2 = new Date(); }
     while(d2-d < ms);
 }
+// when key clicked update current guess based on key pushed unless row end reached and remove popup messages
 function keyClick(key) {
-  first++;
-  if (first==1){
 
-}
 popup.innerHTML = `<div id="No Words Found" class="Container"> </p>
 </div>`
   switch (key) {
@@ -125,7 +134,7 @@ popup.innerHTML = `<div id="No Words Found" class="Container"> </p>
       }
   }
 }
-
+// backspace current guess
 function backspace() {
   if (currentGuess.length > 0) {
     currentGuess.pop();
@@ -135,16 +144,19 @@ function backspace() {
 
 }
 function enter() {
+  // if end of row or end of matrix return otherwise continue
   if (currentGuess.length < mysteryWord.length || guesses.length >= NumberOfGuesses) {
     return;
   }
-
+// checks if the word exists using an api dictionary 
   function check_if_word_exists(word) {
     let guess = "";
+    // gets full guess
     currentGuess.forEach((keyGuess, index) => {
       guess= guess.concat(JSON.stringify(keyGuess.key));
     });
     guess=guess.replaceAll('"', '')
+    // run the api if the guess doesnt equal the mystery word if it does then set confetti
     if (guess!=mysteryWord){
     const url = "https://api.wordnik.com/v4/word.json/" + guess + "/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
    
@@ -155,7 +167,6 @@ function enter() {
           updateCurrentGuess(true);
           guesses.push(currentGuess);
           currentGuess = [];  
-          match=true        
     }).fail(function () {
 
       popup.innerHTML += `<div id="No Words Found" class="Container">   <p>Word does not exist in dictionary</p>
@@ -164,7 +175,6 @@ function enter() {
       for (const key in keys) {
         keys[key]=''
       }
-      match = false
       currentGuess = [];   
       updateCurrentGuess(false);       
       console.log("word does not exist");
@@ -172,6 +182,7 @@ function enter() {
    
     }
     else{
+
       updateCurrentGuess(true);
           guesses.push(currentGuess);
         var div = document.getElementById('confetti');
@@ -197,10 +208,11 @@ helloWorld.innerHTML += `<div id="HelloWorld" class="Container">   <p>Hello Worl
     }
 }
 
-
+// gets the position of the subString(letter/char in this case)
 function getPosition(string, subString, index) {
   return string.split(subString, index).join(subString).length;
 }
+// get the full guess
 function apend(){
   let text = "";
   currentGuess.forEach((keyGuess, index) => {
@@ -209,9 +221,9 @@ function apend(){
 return text;
 
 } 
+
 let count=0;
   currentGuess.forEach((keyGuess, index) => {
-   // if (match){
     if (mysteryWord.charAt(index) == keyGuess.key) {
       keyGuess.result = Correct
     } else if (mysteryWord.includes(keyGuess.key)) {
@@ -242,7 +254,7 @@ let count=0;
   
 }
 
-
+//  updates keyboard keys
 function updateKeyboard() {
   for (const key in keys) {
     if (keys[key] != '') {
@@ -255,6 +267,7 @@ function updateKeyboard() {
   }
 }
 
+// updates guess
 function updateCurrentGuess(guessed = false) {
   let index = guesses.length;
   for (let i = 0; i < mysteryWord.length; i++) {
