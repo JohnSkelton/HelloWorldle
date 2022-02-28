@@ -16,7 +16,7 @@ const param = new URLSearchParams(window. location. search)
 var difficulty = param.get('difficulty')
 let dict="e-dict.txt"
 //sets the genre dictionary based on the parameter in url
-var parameters = window.location.href.split('-')[1];
+var parameters = window.location.href.split('-')[2];
 if (parameters=="f"){
   dict="f-dict.txt"
 }
