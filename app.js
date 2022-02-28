@@ -14,7 +14,7 @@ let mysteryWord=''
 const param = new URLSearchParams(window. location. search)
 // gets the difficulty from url parameter
 var difficulty = param.get('difficulty')
-let dict="f-dict.txt"
+let dict="e-dict.txt"
 //sets the genre dictionary based on the parameter in url
 var parameters = window.location.href.split('-')[1];
 if (parameters=="f"){
@@ -26,6 +26,7 @@ if (parameters=="e"){
 if (parameters=="t"){
   dict="t-dict.txt"
 }
+console.log(difficulty+"/"+parameters+"/"+param)
 // sets the mystery word depending on difficulty 
 async function word(){
 return await fetch(dict,{
