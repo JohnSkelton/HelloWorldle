@@ -11,12 +11,12 @@ let currentGuess = [];
 // Word to guess from genre dictionaries
 let mysteryWord=''
 //gets the parameter from the url
-var parameters = window.location.href.split('-')[1];
 const param = new URLSearchParams(window. location. search)
 // gets the difficulty from url parameter
 var difficulty = param.get('difficulty')
 let dict="f-dict.txt"
 //sets the genre dictionary based on the parameter in url
+var parameters = window.location.href.split('-')[1];
 if (parameters=="f"){
   dict="f-dict.txt"
 }
