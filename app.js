@@ -26,7 +26,6 @@ if (parameters=="e"){
 if (parameters=="t"){
   dict="t-dict.txt"
 }
-console.log(difficulty+"/"+parameters+"/"+param)
 // sets the mystery word depending on difficulty 
 async function word(){
 return await fetch(dict,{
